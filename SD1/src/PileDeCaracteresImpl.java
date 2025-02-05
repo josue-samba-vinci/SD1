@@ -32,15 +32,23 @@ public class PileDeCaracteresImpl implements PileDeCaracteres{
 		return nombreCaracteres == 0;
 	}
 
-
+	/**
+	 * renvoie le caractere qui se trouve au sommet de la pile sans l'enlever de la pile
+	 * @return le caractere au sommet
+	 * @throws PileVideException si la pile est vide
+	 */
 	public char sommet()throws PileVideException{
-		return ' ';
 		// TODO
-		// PENSEZ A CONSULTER LA JAVADOC (cfr Interface PileDeCaracteres)
-
+		if (nombreCaracteres == 0)
+			throw new PileVideException();
+		return table[nombreCaracteres-1];
 	}
 
-
+	/**
+	 * renvoie le caractere qui se trouve au sommet de la pile et l'enleve de la pile
+	 * @return le caractere au sommet
+	 * @throws PileVideException si la pile est vide
+	 */
 	public char pop() throws PileVideException{
 		return ' ';
 		// TODO
@@ -48,7 +56,10 @@ public class PileDeCaracteresImpl implements PileDeCaracteres{
 
 	}
 
-
+	/**
+	 * ajoute le caractere c sur la pile
+	 * @param caractere le caractere a ajouter
+	 */
 	public void push(char c){
 		// TODO
 		// PENSEZ A CONSULTER LA JAVADOC (cfr Interface PileDeCaracteres)
