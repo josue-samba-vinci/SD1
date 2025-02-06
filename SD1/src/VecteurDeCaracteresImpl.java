@@ -41,10 +41,11 @@ public class VecteurDeCaracteresImpl implements VecteurDeCaracteres{
 
 	
 	public char element(int rang) throws VecteurOutException {
-		return 0;
 		// TODO 
 		// PENSEZ A CONSULTER LA JAVADOC (cfr Interface VecteurDeCaracteres)
-
+		if (rang>=taille||rang<0)
+			throw new VecteurOutException();
+		return table[rang];
 	} 
 
 
