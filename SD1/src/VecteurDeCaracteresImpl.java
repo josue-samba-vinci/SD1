@@ -34,7 +34,9 @@ public class VecteurDeCaracteresImpl implements VecteurDeCaracteres{
 	public boolean estVide() {
 		return false;
 		//TODO
-
+		if (taille!=0)
+			return false;
+		return true;
 	}
 
 	
