@@ -38,7 +38,13 @@ public class Consigne{
 	 */
 	public int attribuerCasierLibre(String motDePasse) {
 		// TODO		
-		return 0;
+		if (motDePasse==null||motDePasse.equals(""))
+			throw new IllegalArgumentException();
+		if (casiersLibres.estVide())
+			return -1;
+		Casier casierAAttribuer = casiersLibres.pop();
+		casierAAttribuer.setMotDePasse(motDePasse);
+		return casierAAttribuer.getNumero();
 	}
 
 	
