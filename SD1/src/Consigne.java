@@ -26,7 +26,7 @@ public class Consigne{
 	 */
 	public boolean resteUnCasierLibre() {
 		// TODO
-		return false;
+		return casiersLibres.taille() !=0;
 	}
 
 	
