@@ -9,6 +9,15 @@ public class Consigne{
 	 */
 	public Consigne(int nombreCasiers){
 		// TODO
+		if (nombreCasiers<=0)
+			throw new IllegalArgumentException();
+		casiersLibres = new PileImpl<>();
+		tousLesCasiers = new Casier[nombreCasiers];
+		for (int i = 0; i < nombreCasiers; i++) {
+			Casier casier = new Casier(i);
+			casiersLibres.push(casier);
+			tousLesCasiers[i]= casier;
+		}
 	}
 
 	/**
