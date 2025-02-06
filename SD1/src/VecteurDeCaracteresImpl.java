@@ -25,12 +25,19 @@ public class VecteurDeCaracteresImpl implements VecteurDeCaracteres{
 		this.taille=0;
 	}
 
+	/**
+	 * renvoie la taille logique
+	 * @return le nombre de caracteres contenu dans le vecteur
+	 */
 	// taille logique de la table
 	public int taille() {
 		return taille;
 	}
-	
-	
+
+	/**
+	 * verifie si le vecteur est vide
+	 * @return true si le vecteur est vide, false sinon
+	 */
 	public boolean estVide() {
 		//TODO
 		if (taille!=0)
@@ -38,36 +45,47 @@ public class VecteurDeCaracteresImpl implements VecteurDeCaracteres{
 		return true;
 	}
 
-	
+	/**
+	 * renvoie le caractere qui se trouve au rang passe en parametre
+	 * @param rang
+	 * @return un caractere
+	 * @throws VecteurOutException s'il n'y a pas d'element correspondant a ce rang
+	 */
 	public char element(int rang) throws VecteurOutException {
 		// TODO 
 		// PENSEZ A CONSULTER LA JAVADOC (cfr Interface VecteurDeCaracteres)
 		if (rang>=taille||rang<0)
 			throw new VecteurOutException();
 		return table[rang];
-	} 
+	}
 
-
+	/**
+	 * insere un caractere au rang passe en parametre
+	 * l'ordre des caracteres doit etre conserve
+	 * @param rang
+	 * @param caractere
+	 * @throws VecteurOutException si ce n'est pas possible de mettre un caractere a ce rang
+	 */
 	public void insere(int rang, char caractere) throws VecteurOutException {
 		// TODO 
 		// l'ordre des caracteres doit etre conserve --> decalages!!!
 		// il ne peut y avoir des trous
 		// Si la table est pleine, il faut doubler sa capacite
 		// PENSEZ A CONSULTER LA JAVADOC (cfr Interface VecteurDeCaracteres)
-		/*if(rang == taille) {
+		if (rang<0||rang>taille)
+			throw new VecteurOutException();
+		if(taille == table.length) {
 			char[] tableDouble = new char[table.length * 2];
 			for (int i = 0; i < table.length; i++) {
 				tableDouble[i] = table[i];
 			}
 			table = tableDouble;
 		}
-		for (int i = rang; i < rang-1; i++) {
-			table[]=table
-
+		for (int i = taille-1; i >= rang; i++) {
+			table[i+1]=table[i];
 		}
 		table[rang]=caractere;
 		taille++;
-*/
 	}	
 	
 	public void ajoute(char caractere) {
