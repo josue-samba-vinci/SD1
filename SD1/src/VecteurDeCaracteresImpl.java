@@ -32,7 +32,6 @@ public class VecteurDeCaracteresImpl implements VecteurDeCaracteres{
 	
 	
 	public boolean estVide() {
-		return false;
 		//TODO
 		if (taille!=0)
 			return false;
@@ -55,7 +54,7 @@ public class VecteurDeCaracteresImpl implements VecteurDeCaracteres{
 		// il ne peut y avoir des trous
 		// Si la table est pleine, il faut doubler sa capacite
 		// PENSEZ A CONSULTER LA JAVADOC (cfr Interface VecteurDeCaracteres)
-		if(rang == taille) {
+		/*if(rang == taille) {
 			char[] tableDouble = new char[table.length * 2];
 			for (int i = 0; i < table.length; i++) {
 				tableDouble[i] = table[i];
@@ -68,7 +67,7 @@ public class VecteurDeCaracteresImpl implements VecteurDeCaracteres{
 		}
 		table[rang]=caractere;
 		taille++;
-
+*/
 	}	
 	
 	public void ajoute(char caractere) {
