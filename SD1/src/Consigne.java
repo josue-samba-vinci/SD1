@@ -58,8 +58,17 @@ public class Consigne{
 	 */
 	public boolean libererCasier(int numeroCasier, String motDePasse) {
 		// TODO
+		if (motDePasse==null||motDePasse.equals(""))
+			throw new IllegalArgumentException();
+		if (numeroCasier<0 || numeroCasier>=tousLesCasiers.length)
+			throw new IllegalArgumentException();
+		Casier casierALiberer = tousLesCasiers[numeroCasier];
+		if (casierALiberer.getMotDePasse().equals(motDePasse)) {
+			casierALiberer.setMotDePasse("");
+			casiersLibres.push(casierALiberer);
+			return true;
+		}
 		return false;
-
 	}
 
 }
