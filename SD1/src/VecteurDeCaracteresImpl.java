@@ -55,6 +55,19 @@ public class VecteurDeCaracteresImpl implements VecteurDeCaracteres{
 		// il ne peut y avoir des trous
 		// Si la table est pleine, il faut doubler sa capacite
 		// PENSEZ A CONSULTER LA JAVADOC (cfr Interface VecteurDeCaracteres)
+		if(rang == taille) {
+			char[] tableDouble = new char[table.length * 2];
+			for (int i = 0; i < table.length; i++) {
+				tableDouble[i] = table[i];
+			}
+			table = tableDouble;
+		}
+		for (int i = rang; i < rang-1; i++) {
+			table[]=table
+
+		}
+		table[rang]=caractere;
+		taille++;
 
 	}	
 	
