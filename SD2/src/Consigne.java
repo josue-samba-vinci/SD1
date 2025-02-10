@@ -8,7 +8,6 @@ public class Consigne{
 	 * @throws IllegalArgumentException si le nombre de casiers est negatif ou nul
 	 */
 	public Consigne(int nombreCasiers){
-		// TODO
 		if(nombreCasiers<=0)
 			throw new IllegalArgumentException();
 		casiersLibres = new PileImpl<Casier>();
@@ -26,8 +25,6 @@ public class Consigne{
 	 * @return true s'il reste au moins un casier de libre, false sinon
 	 */
 	public boolean resteUnCasierLibre() {
-		// TODO
-		//return false;
 		return casiersLibres.taille() != 0;
 	}
 
@@ -39,8 +36,6 @@ public class Consigne{
 	 * @throws IllegalArgumentException si le mot de passe est vide ou null
 	 */
 	public int attribuerCasierLibre(String motDePasse) {
-		// TODO		
-		//return 0;
 		if(motDePasse==null||motDePasse.equals(""))
 			throw new IllegalArgumentException();
 		if(casiersLibres.estVide())
@@ -60,8 +55,6 @@ public class Consigne{
 	 *                                  et/ou si le mot de passe est vide ou null
 	 */
 	public boolean libererCasier(int numeroCasier, String motDePasse) {
-		// TODO
-		//return false;
 		if(motDePasse==null||motDePasse.equals(""))
 			throw new IllegalArgumentException();
 		if(numeroCasier<0 || numeroCasier >= tousLesCasiers.length)
