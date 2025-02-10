@@ -81,32 +81,59 @@ public class VecteurDeCaracteresImpl implements VecteurDeCaracteres{
 			}
 			table = tableDouble;
 		}
-		for (int i = taille-1; i >= rang; i++) {
+		for (int i = taille-1; i >= rang; i--) {
 			table[i+1]=table[i];
 		}
 		table[rang]=caractere;
 		taille++;
-	}	
-	
+	}
+
+	/**
+	 * ajoute le caractere a la fin du vecteur
+	 * @param caractere
+	 */
 	public void ajoute(char caractere) {
 		// TODO 
-
+		insere(taille,caractere);
 	}
 
+	/**
+	 * remplace un caractere par le caractere passe en parametre
+	 * @param rang le rang du caractere a remplacer
+	 * @param caractere le nouveau caractere
+	 * @return le caractere qui a ete remplace
+	 * @throws VecteurOutException s'il n'y a pas d'element correspondant a ce rang
+	 */
 	public char remplace(int rang, char caractere)throws VecteurOutException {
-		return 0;
 		// TODO 
 		// PENSEZ A CONSULTER LA JAVADOC (cfr Interface VecteurDeCaracteres)
-
+		if (rang>=taille||rang<0)
+			throw new VecteurOutException();
+		char oldChar = table[rang];
+		table[rang]= caractere;
+		return oldChar;
 	}
 
+	/**
+	 * supprime le caractere au rang passe en parametre
+	 * l'ordre des caracteres doit etre conserve
+	 * @param rang
+	 * @return le caractere qui a ete supprime
+	 * @throws VecteurOutException s'il n'y a pas d'element correspondant a ce rang
+	 */
 	public char supprime(int rang) throws VecteurOutException {
-		return 0;
 		// TODO 
 		// l'ordre des caracteres doit etre conserve --> decalages!!!
 		// il ne peut y avoir des trous
 		// PENSEZ A CONSULTER LA JAVADOC (cfr Interface VecteurDeCaracteres)
-
+		if (rang>=taille||rang<0)
+			throw new VecteurOutException();
+		char oldChar = table[rang];
+		for (int i = rang; i < taille-1; i++) {
+			table[i]=table[i+1];
+		}
+		taille--;
+		return oldChar;
 	}
 
 	// A ne pas modifier!!! Va servir pour les tests
