@@ -13,7 +13,15 @@ public class ConsigneFIFO {
 	 */
 	public ConsigneFIFO(int nombreCasiers){
 		// TODO
-
+		if (nombreCasiers<=0)
+			throw new IllegalArgumentException();
+		casiersLibres = new ArrayList<>(nombreCasiers);
+		tousLesCasiers = new Casier[nombreCasiers];
+		for (int i = 0; i < nombreCasiers; i++) {
+			Casier casier = new Casier(i);
+			tousLesCasiers[i]=casier;
+			casiersLibres.add(casier);
+		}
 	}
 
 	/**
@@ -22,7 +30,7 @@ public class ConsigneFIFO {
 	 */
 	public boolean resteUnCasierLibre() {
 		// TODO
-		return false;
+		return !casiersLibres.isEmpty();
 	}
 
 	
@@ -33,9 +41,15 @@ public class ConsigneFIFO {
 	 * @throws IllegalArgumentException si le mot de passe est vide ou null
 	 */
 	public int attribuerCasierLibre(String motDePasse) {
-		// TODO		
-		return 0;
-
+		// TODO
+		if (motDePasse==null||motDePasse.equals(""))
+			throw new IllegalArgumentException();
+		if (!resteUnCasierLibre())
+				return -1;
+		Casier casier = casiersLibres.get(0);
+		casier.setMotDePasse(motDePasse);
+		casiersLibres.remove(casier);
+		return casier.getNumero();
 	}
 
 
@@ -49,7 +63,16 @@ public class ConsigneFIFO {
 	 */
 	public boolean libererCasier(int numeroCasier, String motDePasse) {
 		// TODO
+		if (motDePasse==null||motDePasse.equals(""))
+			throw new IllegalArgumentException();
+		if (numeroCasier>=tousLesCasiers.length||numeroCasier<0)
+			throw new IllegalArgumentException();
+		Casier casier = tousLesCasiers[numeroCasier];
+		if (casier.getMotDePasse().equals(motDePasse)){
+			casier.setMotDePasse("");
+			casiersLibres.add(casier);
+			return true;
+		}
 		return false;
-
 	}
 }
