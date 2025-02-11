@@ -46,9 +46,8 @@ public class ConsigneFIFO {
 			throw new IllegalArgumentException();
 		if (!resteUnCasierLibre())
 				return -1;
-		Casier casier = casiersLibres.get(0);
+		Casier casier = casiersLibres.remove(0);
 		casier.setMotDePasse(motDePasse);
-		casiersLibres.remove(casier);
 		return casier.getNumero();
 	}
 
