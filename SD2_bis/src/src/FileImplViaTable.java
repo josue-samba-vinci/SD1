@@ -62,6 +62,7 @@ public class FileImplViaTable<E> implements File<E>{
 					indiceTete=0;
 			}
 			table=newTable;
+			indiceTete=0;
 			}
 		table[(taille+indiceTete)% table.length]=element;
 		taille++;
