@@ -15,7 +15,10 @@ public class ServeurImpressions {
 		//A cause d'une limitation du generique en JAVA
 		//new ArrayDeque[10] --> OK (avec avertissement)
 		//new ArrayDeque<DemandeImpression>[10] --> KO
-
+		tableFilesDAttente = new ArrayDeque[10];
+		for (int i = 0; i < tableFilesDAttente.length; i++) {
+			tableFilesDAttente[i]= new ArrayDeque<>();
+		}
 	}
 	
 	/**
@@ -24,8 +27,13 @@ public class ServeurImpressions {
 	 */
 	public boolean serveurVide(){
 		//TODO
-		return false;
+		for (ArrayDeque<DemandeImpression> file : tableFilesDAttente) {
+			if (!file.isEmpty()) {
+				return false;
+			}
+		}
 
+		return true;
 	}
 	
 	/**
@@ -35,7 +43,9 @@ public class ServeurImpressions {
 	 */
 	public void ajouter(DemandeImpression demande){
 		//TODO
-
+		if (demande==null)
+			throw new IllegalArgumentException();
+		tableFilesDAttente[demande.getPriorite()].add(demande);
 	}
 	
 	/**
@@ -45,8 +55,13 @@ public class ServeurImpressions {
 	 */
 	public DemandeImpression retirer(){
 		//TODO
-		return null;
-
+		for (int i = tableFilesDAttente.length-1; i >=0; i--) {
+			ArrayDeque<DemandeImpression> file = tableFilesDAttente[i];
+			if (!file.isEmpty()){
+				return file.removeFirst();
+			}
+		}
+		throw new NoSuchElementException();//Aucune demande d'impression dans le serveur
 	}
 
 	// A NE PAS MODIFIER
