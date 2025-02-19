@@ -36,8 +36,12 @@ public class Patrouille {
 	public void ajouterScout(String scout){
 		if(scout == null || scout.length()==0)
 			throw new IllegalArgumentException();
-
 		// TODO
+		Noeud nouveauNoeud = new Noeud(scout);
+		nouveauNoeud.suivant= tete.suivant;
+		//OU DIRECTEMENT Noeud nouveauNoeud = new Noeud(scout, tete.suivant);
+		tete.suivant = nouveauNoeud;
+		nombreScouts++;
 	}
 	
 
