@@ -19,21 +19,44 @@ public class PileImplChainee<E> implements Pile<E>{
 		return this.taille == 0;
 	}
 
-
+	/**
+	 * renvoie l'element qui se trouve au sommet de la pile sans l'enlever de la pile
+	 * @return l'element au sommet
+	 * @throws PileVideException si la pile est vide
+	 */
 	public E sommet() throws PileVideException {
-		return null;
+		//return null;
 		//TODO
+		if (taille == 0)
+			throw new PileVideException();
+		return sommet.element;
 	}
 
-
+	/**
+	 * renvoie l'element qui se trouve au sommet de la pile et l'enleve de la pile
+	 * @return l'element au sommet
+	 * @throws PileVideException si la pile est vide
+	 */
 	public E pop() throws PileVideException {
-		return null;
+		//return null;
 		//TODO
+		if (taille == 0)
+			throw new PileVideException();
+		Noeud oldSommet = sommet;
+		sommet = sommet.suivant;
+		taille--;
+		return oldSommet.element;
 	}
 
-
+	/**
+	 * ajoute un element sur la pile
+	 * @param element l'element a ajouter
+	 */
 	public void push(E element) {
 		//TODO
+		Noeud nouveauNoeud = new Noeud(element, sommet);
+		sommet = nouveauNoeud;
+		taille++;
 	}
 
 	// A NE PAS MODIFIER --> POUR LES TESTS!!!

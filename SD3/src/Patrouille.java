@@ -18,6 +18,9 @@ public class Patrouille {
 			throw new IllegalArgumentException();
 	
 		// TODO
+		Noeud CPNoeud = new Noeud(CP);
+		tete = CPNoeud;
+		nombreScouts++;
 	}
 	
 	public int getNombreScouts(){

@@ -18,21 +18,50 @@ public class FileImplChainee<E> implements File<E>{
 		return taille==0;
 	}
 
-
+	/**
+	 * renvoie l'element qui se trouve en tete de file sans l'enlever de la file
+	 * @return l'element en tete
+	 * @throws FileVideException si la file est vide
+	 */
 	public E premier()throws FileVideException{
 		//TODO
-		return null;
+		//return null;
+		if (taille == 0)
+			throw new FileVideException();
+		return tete.element;
 	}
 
-
+	/**
+	 * renvoie l'element qui se trouve en tete de file et l'enleve de la file
+	 * @return l'element en tete
+	 * @throws FileVideException si la file est vide
+	 */
 	public E defile() throws FileVideException{
 		//TODO
-		return null;
+		//return null;
+		if (taille == 0)
+			throw new FileVideException();
+		Noeud oldTete = tete;
+		tete = tete.suivant;
+		taille--;
+		return oldTete.element;
 	}
 
-
+	/**
+	 * ajoute un element en fin de file (queue)
+	 * @param element l'element a ajouter
+	 */
 	public void enfile(E element){
 		//TODO
+		Noeud nouveauNoeud = new Noeud(element);
+		if (estVide()){
+			tete = nouveauNoeud;
+			queue = nouveauNoeud;
+		}else {
+			queue.suivant = nouveauNoeud;
+			queue = nouveauNoeud;
+		}
+		taille++;
 	}
 
 
