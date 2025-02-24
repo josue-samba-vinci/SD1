@@ -12,6 +12,9 @@ public class SerieEtudiants {
 	 */
 	public SerieEtudiants(int numero) {
 		// TODO
+		if (numero <1)
+			throw new IllegalArgumentException();
+		listeEtudiants = new LinkedList<>();
 	}
 
 	/**
@@ -70,7 +73,7 @@ public class SerieEtudiants {
 	}
 
 	public String toString(){
-		return "serie n°"+numeroSerie+" "+listeEtudiants.toString();
+		return "serie nï¿½"+numeroSerie+" "+listeEtudiants.toString();
 	}
 
 }
