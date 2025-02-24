@@ -14,6 +14,7 @@ public class SerieEtudiants {
 		// TODO
 		if (numero <1)
 			throw new IllegalArgumentException();
+		numeroSerie = numero;
 		listeEtudiants = new LinkedList<>();
 	}
 
@@ -23,7 +24,7 @@ public class SerieEtudiants {
 	 */
 	public int getNumeroSerie(){
 		// TODO
-		return 0;
+		return numeroSerie;
 	}
 	
 	/**
@@ -32,7 +33,7 @@ public class SerieEtudiants {
 	 */
 	public int nombreEtudiants(){
 		// TODO
-		return 0;
+		return listeEtudiants.size();
 	}
 	
 
@@ -44,7 +45,7 @@ public class SerieEtudiants {
 	 */
 	public boolean contientEtudiant(String nom){
 		// TODO
-		return false;
+		return listeEtudiants.contains(nom);
 	}
 	
 	
@@ -58,6 +59,7 @@ public class SerieEtudiants {
 	 */
 	public void ajouterEtudiant(String nom){
 		// TODO
+		listeEtudiants.add(nom);
 	}
 
 	
@@ -69,7 +71,7 @@ public class SerieEtudiants {
 	 */
 	public boolean supprimerEtudiant(String nom){
 		// TODO
-		return false;
+		return listeEtudiants.remove(nom);
 	}
 
 	public String toString(){

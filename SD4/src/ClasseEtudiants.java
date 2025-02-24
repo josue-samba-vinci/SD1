@@ -16,6 +16,15 @@ public class ClasseEtudiants{
 	 */
 	public ClasseEtudiants(int nombreSeries,String[] noms){
 		// TODO
+		if (nombreSeries<=0 || noms == null)
+			throw new IllegalArgumentException();
+		for (int i = 0; i <= nombreSeries; i++) {
+			tableSeries[i] = new SerieEtudiants(i+1);
+		}
+		for (int i = 0; i < noms.length; i++) {
+			//le modulo permet d'avoir une repartition equitable d'etudiqants ddans les series
+			tableSeries[i%nombreSeries].ajouterEtudiant(noms[i]);
+		}
 
 	}
 	
