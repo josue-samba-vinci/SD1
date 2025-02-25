@@ -30,7 +30,7 @@ public class GestionDesSeries {
 			}
 			String[] noms = new String[nombreEtudiants];
 			for (int i = 0; i < noms.length; i++) {
-				System.out.print("Entrez le nom de l'etudiant n°"+ (i+1)+" ");
+				System.out.print("Entrez le nom de l'etudiant nï¿½"+ (i+1)+" ");
 				noms[i]=scanner.nextLine();
 				if(noms[i].length()==0){
 					System.out.println("L'application a rencontre un probleme");
@@ -91,8 +91,12 @@ public class GestionDesSeries {
 		scanner.nextLine();
 		String nom = scanner.nextLine();
 		//TODO
-		System.out.println("Dans la classe GestionDesSeries : ");
-		System.out.println("Vous devez completer la methode rechercherSerie()");
+		int numeroSerie = classe.numeroSerie(nom);
+		if (numeroSerie == -1)
+			System.out.println("L'etudiant n'existe pas");
+		else System.out.println(nom+" se trouve dans la serie "+numeroSerie);
+		//System.out.println("Dans la classe GestionDesSeries : ");
+		//System.out.println("Vous devez completer la methode rechercherSerie()");
 
 	}
 	
@@ -120,8 +124,12 @@ public class GestionDesSeries {
 	
 	private static void afficherTailleSeries() {
 		//TODO
-		System.out.println("Dans la classe GestionDesSeries : ");
-		System.out.println("Vous devez completer la methode afficherTailleSeries()");
+		//System.out.println("Dans la classe GestionDesSeries : ");
+		//System.out.println("Vous devez completer la methode afficherTailleSeries()");
+		for (int i = 1; i <= classe.nombreSeries() ; i++) {
+			System.out.println("Serie "+i+" contient "+ classe.getSerieEtudiants(i).nombreEtudiants()+" etudiants");
+		}
+		System.out.println();
 
 	}
 

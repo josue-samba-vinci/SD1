@@ -18,7 +18,10 @@ public class ClasseEtudiants{
 		// TODO
 		if (nombreSeries<=0 || noms == null)
 			throw new IllegalArgumentException();
-		for (int i = 0; i <= nombreSeries; i++) {
+
+		tableSeries = new SerieEtudiants[nombreSeries];
+
+		for (int i = 0; i < tableSeries.length; i++) {
 			tableSeries[i] = new SerieEtudiants(i+1);
 		}
 		for (int i = 0; i < noms.length; i++) {
@@ -37,7 +40,7 @@ public class ClasseEtudiants{
 	 */
 	public SerieEtudiants getSerieEtudiants(int numeroSerie)throws IllegalArgumentException{
 		// TODO
-		return null;
+		return tableSeries[numeroSerie-1];
 	}
 	
 	
@@ -47,7 +50,7 @@ public class ClasseEtudiants{
 	 */
 	public int nombreSeries(){
 		// TODO
-		return 0;
+		return tableSeries.length;
 	}
 		
 	/**
@@ -58,8 +61,12 @@ public class ClasseEtudiants{
 	 */
 	public int numeroSerie(String nom){
 		// TODO
-		return 0;
-
+		for (int i = 0; i < tableSeries.length; i++) {
+				if (tableSeries[i].contientEtudiant(nom)){
+					return i+1;
+				}
+			}
+		return -1;
 	}
 	
 	
@@ -73,6 +80,14 @@ public class ClasseEtudiants{
 	 */
 	public boolean changerSerie(String nom, int nouveauNumeroSerie){
 		// TODO
+		if(nom==null||nouveauNumeroSerie>tableSeries.length)
+			throw new IllegalArgumentException();
+		if(numeroSerie(nom)==nouveauNumeroSerie)
+			return false;
+		if(tableSeries[numeroSerie(nom)-1].supprimerEtudiant(nom)){
+			tableSeries[nouveauNumeroSerie-1].ajouterEtudiant(nom);
+			return true;
+		}
 		return false;
 	}
 	
