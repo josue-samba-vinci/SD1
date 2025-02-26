@@ -20,8 +20,14 @@ public class ListeCaracteres {
      */
     public boolean contient(char caractereRecherche) {
         //TODO
+        NoeudCaractere baladeur = tete;
+        while (baladeur != null){
+            if (baladeur.caractere == caractereRecherche){
+                return true;
+            }
+            baladeur = baladeur.suivant;
+        }
         return false;
-
     }
 
 
@@ -33,8 +39,16 @@ public class ListeCaracteres {
      */
     public int nombreOccurrences(char caractereRecherche) {
         //TODO
-        return 0;
-
+        //return 0;
+        int nbrOccurence = 0;
+        NoeudCaractere baladeur = tete;
+        while (baladeur != null){
+            if (baladeur.caractere==caractereRecherche){
+                nbrOccurence++;
+            }
+            baladeur = baladeur.suivant;
+        }
+        return nbrOccurence;
     }
 
 
@@ -46,7 +60,13 @@ public class ListeCaracteres {
      */
     public void remplacer(char caractereARemplacer, char nouveauCaractere) {
         //TODO
-
+        NoeudCaractere baladeur = tete;
+        while (baladeur != null){
+            if (baladeur.caractere == caractereARemplacer) {
+                caractereARemplacer = nouveauCaractere;
+            }
+            baladeur= baladeur.suivant;
+        }
     }
 
 
