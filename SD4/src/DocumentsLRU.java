@@ -12,7 +12,12 @@ public class DocumentsLRU {
 	 */
 	public DocumentsLRU(int nombreDocuments){
 		// TODO
-
+		if (nombreDocuments==0)
+			throw new IllegalArgumentException();
+		listeLRU = new LinkedList<>();
+		for (int i = 1; i <= nombreDocuments; i++) {
+			listeLRU.add(i - 1, "doc" + i);
+		}
 	}
 	
 
@@ -23,7 +28,14 @@ public class DocumentsLRU {
 	 */
 	public void ouvrirDocument(String document){
 		//TODO
-
+		if (document== null)
+			throw new IllegalArgumentException();
+		if (listeLRU.remove(document)){
+			listeLRU.addFirst(document);
+		}else{
+			listeLRU.addFirst(document);
+			listeLRU.removeLast();
+		}
 	}
 	
 	

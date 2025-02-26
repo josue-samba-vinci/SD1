@@ -64,7 +64,9 @@ public class DequeImplViaTable<E> implements Deque<E> {
     @Override
     public E dernier() throws DequeVideException {
         //TODO
-        return null;
+        if (table.length==0)
+            throw new DequeVideException();
+        return (E) table[table.length-1];
     }
 
     @Override
