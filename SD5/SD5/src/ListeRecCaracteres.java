@@ -148,11 +148,12 @@ public class ListeRecCaracteres {
 	}
 
 	private boolean estEgalA(NoeudCaractere noeud, ListeRecCaracteres l){
-		if (noeud == null && l == null)
-			return true;
-		if (noeud == null || l == null)
-			return false;
-		if (noeud.caractere != )
+		return false;
+		//if (noeud == null && l == null)
+		//	return true;
+		//if (noeud == null || l == null)
+		//	return false;
+		//if (noeud.caractere != )
 	}
 	
 
