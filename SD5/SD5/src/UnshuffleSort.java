@@ -4,7 +4,7 @@ import java.util.LinkedList;
 /**
  * Algorithme de tri : UnshuffleSort 
 
- * Cet algorithme de tri necessite l’utilisation d’une liste de deques.
+ * Cet algorithme de tri necessite lï¿½utilisation dï¿½une liste de deques.
  * Cet algorithme de tri comporte deux etapes. La premiere consiste a repartir 
  * les entiers a trier dans un nombre variable de deques. Lorsque tous
  * les entiers auront ete repartis, la deuxieme etape se chargera de remplir la
@@ -25,7 +25,7 @@ public class UnshuffleSort {
 	}
 
 	/**
-	 * tri de la table d'entiers reçue en parametre
+	 * tri de la table d'entiers reï¿½ue en parametre
 	 * 
 	 * @param tableATrier la table a trier
 	 * @return table contenant les entiers tries
@@ -42,10 +42,18 @@ public class UnshuffleSort {
 	private void remplirDeques(int[]tableATrier) {	
 		// Pour le debug:
 		System.out.println("etape1");
-
 		// TODO
-
 		// pour plus de lisibilite cette methode pourrait appeler la methode suivante :
+		for (int i = 0; i < tableATrier.length; i++) {
+			if (tableATrier[i] < listeDeDeques.getFirst().getFirst())
+				listeDeDeques.getFirst().addFirst(tableATrier[i]);
+			if (tableATrier[i] < listeDeDeques.getLast().getFirst())
+				listeDeDeques.getLast().addFirst(tableATrier[i]);
+			if (tableATrier[i] > listeDeDeques.getFirst().getLast())
+				listeDeDeques.getFirst().addLast(tableATrier[i]);
+			if (tableATrier[i] > listeDeDeques.getLast().getLast())
+				listeDeDeques.getLast().addLast(tableATrier[i]);
+		}
 
 	}
 
@@ -69,19 +77,25 @@ public class UnshuffleSort {
 		
 		// Pour le debug:
 		System.out.println("etape2");
-
-	    return null;
 		// TODO
-
+		 int[] tableTrie = new int[taille];
+		 int i = 0;
+		 while (!listeDeDeques.isEmpty()){
+			 int plusPetitEntier = supprimerPlusPetitEntier();
+			 tableTrie[i++] = plusPetitEntier;
+		 }
+		 return tableTrie;
 		// pour plus de lisibilite cette methode pourrait appeler les methodes suivantes :
 
 	}
 	
 	private int supprimerPlusPetitEntier(){
-
 		// supprime et renvoie l'entier supprime
-
-		return 0;
+		int plusPetitEntier = listeDeDeques.getFirst().getFirst();
+		listeDeDeques.getFirst().removeFirst();
+		if (listeDeDeques.getFirst().isEmpty())
+			listeDeDeques.removeFirst();
+		return plusPetitEntier;
 	}
 	
 	private void reorganiserListe(){
