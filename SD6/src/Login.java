@@ -14,10 +14,16 @@ public class Login {
 	}
 
 	// renvoie un entier >= 0
-	// cet entier represente de façon unique le login courant!
+	// cet entier represente de faï¿½on unique le login courant!
 	public int hashCode(){
 		// TODO 
-		return 0;
+		if (login.startsWith("info")) {
+			return Integer.parseInt(login.substring(4,7)) - 1;
+		}
+		if (login.startsWith("mark")) {
+			return Integer.parseInt(login.substring(4,7)) + 199;
+		}
+		return Integer.parseInt(login.substring(4,7)) + 399;
 	}
 	
 }

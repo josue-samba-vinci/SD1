@@ -7,34 +7,31 @@ public class ConnexionInfo {
  	
  	public ConnexionInfo(){
 		// TODO
-
+		ensembleDesConnectes = new EnsembleTableBooleens<>(500);
 	}
  	
  	public	int nombreDeConnectes(){
- 		return 0;
  		// TODO
-
+		return ensembleDesConnectes.taille();
 	}
 
  	// ajoute le loginInfo s'il n'est pas encore connecte
 	public boolean connecter(LoginInfo loginInfo){
-		return false;
 		// TODO
-
+		return ensembleDesConnectes.ajouter(loginInfo);
 	}
 
 	// retire le loginInfo s'il est connecte
-	public boolean deconnecter(LoginInfo loginInfo){
-		return false;
+	public boolean deconnecter(LoginInfo loginInfo) {
 		// TODO
-
+		return ensembleDesConnectes.enlever(loginInfo);
 	}
 
-	public boolean estConnecte(LoginInfo loginInfo){
-		return false;
-		// TODO
+		public boolean estConnecte (LoginInfo loginInfo){
+			// TODO
+			return ensembleDesConnectes.contient(loginInfo);
+		}
 
-	}
 	
 
 }

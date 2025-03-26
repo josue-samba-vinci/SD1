@@ -20,7 +20,7 @@ public class EnsembleTableBooleens<E> implements Ensemble<E>{
 	
 	public boolean estVide(){
 		// TODO
-		return taille==0;
+		return taille<1;
 	}
 
 	public boolean contient(E element){

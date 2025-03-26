@@ -14,13 +14,13 @@ public class LoginInfo {
 	}
 
 	// renvoie un entier >= 0
-	// cet entier represente de façon unique le login courant
+	// cet entier represente de faï¿½on unique le login courant
 	// info001 --> 0 	info002 --> 1	...	info137 --> 136
 	public int hashCode(){
 		// TODO
 		// OBSERVEZ LES MANIPULATIONS DE CHAINES DE CARACTERES DANS LE CONSTRUCTEUR!
 		// Integer.parseInt() permet de convertir une chaine de caractere en un entier!
-		return -1;
+		return Integer.parseInt(login.substring(4,7)) - 1;
 
 	}
 	

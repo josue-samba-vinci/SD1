@@ -6,30 +6,30 @@ public class Connexion {
 	
 	public Connexion(){
 		// A COMPLETER
+		ensembleDesConnectes = new EnsembleTableBooleens<>(500);
 	}
 
 	public int nombreDeConnectes(){
 		// A COMPLETER
-		return 0;
+		return ensembleDesConnectes.taille();
 	}
 	
 	// ajoute le login s'il n'est pas encore connecte
 	public boolean connecter(Login login){
-		return false;
 		// A COMPLETER
+		return ensembleDesConnectes.ajouter(login);
 
 	}
 	
 	// retire le login s'il est connecte
 	public boolean deconnecter(Login login){
-		return false;
 		// A COMPLETER
-
+		return ensembleDesConnectes.enlever(login);
 	}
 
 	public boolean estConnecte(Login login){
 		// A COMPLETER
-		return false;
+		return ensembleDesConnectes.contient(login);
 	}
 	
 	
