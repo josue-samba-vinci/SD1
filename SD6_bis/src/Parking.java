@@ -7,7 +7,7 @@ public class Parking {
 	// construit un ensembleVoitures vide
 	public Parking(){
 		// TODO
-
+		ensembleVoitures = new HashSet<>();
 	}
 
 	/**
@@ -17,9 +17,8 @@ public class Parking {
 	 *
 	 */
 	public boolean ajouterVoiture(Voiture voiture){
-		return false;
 		// TODO
-
+		return ensembleVoitures.add(voiture);
 	}
 
 	
@@ -28,10 +27,9 @@ public class Parking {
 	 * @param voiture la voiture a verifier
 	 * @return true si la voiture est presente, false sinon
 	 */
-	public boolean voitureAutorisee(Voiture voiture){	
-		return false;
+	public boolean voitureAutorisee(Voiture voiture){
 		// TODO
-
+		return ensembleVoitures.contains(voiture);
 	}
 
 	/**
@@ -40,9 +38,8 @@ public class Parking {
 	 * @return true si la voiture etait presente, false sinon
 	 */
 	public boolean retirerVoiture(Voiture voiture){
-		return false;
 		// TODO
-
+		return ensembleVoitures.remove(voiture);
 	}
 
 
@@ -52,14 +49,19 @@ public class Parking {
 	 * @return une table avec les plaques de voitures autorisees
 	 */
 	public String[] tableTrieePlaques(){
-
 		// piste la classe Arrays possede une methode static sort
 		// qui trie la table passee en parametre !
-
-		return null;
 		//TODO
-
+		return ensembleVoitures.stream()
+				.map(voiture -> voiture.getNumPlaque())
+				.sorted()
+				.toArray(size -> new String[size]);
 	}
+	//return ensembleVoitures.stream()
+	//                           .map(voiture -> voiture.getNumPlaque())
+	//                           .sorted()
+	//                           .toArray(size -> new String[size]);
+	//}
 
 	//Pour les tests : (A NE PAS MODIFIER, VA SERVIR POUR LES TESTS)
 	@Override
