@@ -98,8 +98,21 @@ public class ListeSDImpl<E> implements ListeSD<E>,Iterable<E> {
 
 	public boolean insererApres (E element, E elementAInserer) {
 		//TODO
+		if (mapElementNoeud.containsKey(elementAInserer))
+			return false;
+		Noeud noeudElement = mapElementNoeud.get(element);
+		if (noeudElement== null)
+			return false;
+		Noeud nouveauNoeud = new Noeud(elementAInserer);
+		Noeud noeudAvant = noeudElement;
+		Noeud noeudApres =noeudElement.suivant;
+		noeudAvant.suivant = nouveauNoeud;
+		noeudApres.precedent = nouveauNoeud;
+		nouveauNoeud.precedent = noeudAvant;
+		nouveauNoeud.suivant = noeudApres;
 
-return false;
+		mapElementNoeud.put(elementAInserer, nouveauNoeud);
+		return true;
 	}
 
 	public boolean insererAvant (E element, E elementAInserer) {
@@ -116,6 +129,7 @@ return false;
 		noeudApres.precedent = nouveauNoeud;
 		nouveauNoeud.precedent = noeudAvant;
 		nouveauNoeud.suivant = noeudApres;
+
 		mapElementNoeud.put(elementAInserer, nouveauNoeud);
 		return true;
 	}
@@ -123,16 +137,33 @@ return false;
 
 	public boolean supprimer (E element) {
 		//TODO
-		return false;
-
+		if (!mapElementNoeud.containsKey(element))
+			return false;
+		Noeud noeudElement = mapElementNoeud.get(element);
+		if (noeudElement== null)
+			return false;
+		Noeud noeudAvant = noeudElement.precedent;
+		Noeud noeudApres = noeudElement.suivant;
+		noeudAvant.suivant= noeudApres;
+		noeudApres.precedent= noeudAvant;
+		mapElementNoeud.remove(element);
+		return true;
 	}
 
 	
 	public boolean permuter (E element1, E element2) {
 
 		//TODO
-		return false;
-
+		if (!mapElementNoeud.containsKey(element1) || !mapElementNoeud.containsKey(element2))
+			return false;
+		Noeud noeud1 = mapElementNoeud.get(element1);
+		Noeud noeud2 = mapElementNoeud.get(element2);
+		E temp = noeud1.element;
+		noeud1.element = noeud2.element;
+		noeud2.element = temp;
+		mapElementNoeud.put(element1, noeud2);
+		mapElementNoeud.put(element2, noeud1);
+		return true;
 		// REMARQUE : CE SONT LES VALEURS QUI SONT PERMUTEES, PAS LES NOEUDS!!!
 		// Il est donc inutile de revoir le chainage
 		// N'oubliez pas de modifier les noeuds associes dans le map
