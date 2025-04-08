@@ -85,7 +85,7 @@ public class ExpressionArithmetique extends ArbreDeCaracteres {
 	private void nombreEntiersDifferents(NoeudCaractere noeud, HashSet<Character> listeEntiers){
 		if (noeud == null)
 			return;
-		if (noeud.caractere == '0' || noeud.caractere == '1' || noeud.caractere == '2' || noeud.caractere == '3' || noeud.caractere == '4' || noeud.caractere == '5' || noeud.caractere == '6' || noeud.caractere == '7' || noeud.caractere == '8' || noeud.caractere == '9'){
+		if (noeud.caractere >= '0' && noeud.caractere <= '9'){
 			listeEntiers.add(noeud.caractere);
 		}
 		   nombreEntiersDifferents(noeud.droit,listeEntiers) ;
@@ -105,8 +105,33 @@ public class ExpressionArithmetique extends ArbreDeCaracteres {
 		// (int)'0' = 48  (int)'1' = 49  (int)'2' = 50 ...  (int)'9' = 57
 		// Le cast (int) n'est pas obligatoire
 		// TODO
-		return 0;	
+		return resultat(racine);
 	}
+
+	private double resultat(NoeudCaractere noeud){
+		if (noeud.caractere == '+')
+			return resultat(noeud.gauche) + resultat(noeud.droit);
+		else if (noeud.caractere == '-')
+			return resultat(noeud.gauche) - resultat(noeud.droit);
+		else if (noeud.caractere == '*')
+			return resultat(noeud.gauche) * resultat(noeud.droit);
+		else if (noeud.caractere == '/')
+			return resultat(noeud.gauche) / resultat(noeud.droit);
+		return (int)noeud.caractere - 48;
+	}
+	//switch (noeud.caractere) {
+	//			case '+':
+	//				return resultat(noeud.droit) + resultat(noeud.gauche);
+	//			case '-':
+	//				return resultat(noeud.droit) - resultat(noeud.gauche);
+	//			case '*':
+	//				return resultat(noeud.droit) * resultat(noeud.gauche);
+	//			case '/':
+	//				return resultat(noeud.droit) / resultat(noeud.gauche);
+	//		}
+	//		return (int) noeud.caractere - 48;
+	//	}
+
 	
 
 	/**
