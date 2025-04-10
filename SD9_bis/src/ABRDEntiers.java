@@ -34,7 +34,20 @@ public class ABRDEntiers {
 	 */
 	public void insere(int entier) {
 		//TODO
+		racine = insere(racine, entier);
+	}
 
+	private NoeudEntier insere(NoeudEntier noeud, int entier){
+
+		if (noeud == null){
+			return new NoeudEntier(entier);
+		}
+		if (entier >= noeud.entier) {
+			noeud.droit = insere(noeud.droit, entier);
+			return noeud;
+		}
+		noeud.gauche = insere(noeud.gauche, entier);
+		return noeud;
 	}
 
 
@@ -45,8 +58,17 @@ public class ABRDEntiers {
 	 */
 	public boolean contient(int entier) {
 		//TODO
-		return false;
+		return contient(racine, entier);
+	}
 
+	private boolean contient(NoeudEntier noeud, int entier){
+		if(noeud == null)
+			return false;
+		if(noeud.entier == entier)
+			return true;
+		if(entier >= noeud.entier)
+			return contient(noeud.droit, entier);
+		return contient(noeud.gauche, entier);
 	}
 
 	/**
@@ -59,8 +81,18 @@ public class ABRDEntiers {
 		// Cette methode peut etre ecrite de facon iterative
 		// Ou se trouve le plus petit entier dans l'arbre ?
 		// Reflechissez !
-		return 0;
+		return min(racine);
+	}
 
+	private int min(NoeudEntier noeud){
+		int min;
+		if (noeud == null)
+			throw new ArbreVideException();
+		if (noeud.gauche != null)
+			return min(noeud.gauche);
+		if (noeud.gauche == null)
+			min = noeud.entier;
+		return min;
 	}
 
 	/**
