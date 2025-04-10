@@ -85,7 +85,7 @@ public class ABRDEntiers {
 	}
 
 	private int min(NoeudEntier noeud){
-		int min;
+		int min = 0;
 		if (noeud == null)
 			throw new ArbreVideException();
 		if (noeud.gauche != null)
@@ -101,11 +101,40 @@ public class ABRDEntiers {
 	 */
 	public void supprimeMin() throws ArbreVideException {
 		//TODO
-		// La methode supprimeMin() est plus simple que la methode supprime()
-		// Le noeud qui contient le plus petit entier n'a pas de fils gauche
-		// Reflechissez !
-
+		if (racine == null) {
+			throw new ArbreVideException();
+		}
+		racine = supprimeMin(racine);
 	}
+
+	private NoeudEntier supprimeMin(NoeudEntier noeud) {
+
+		if (noeud.gauche == null) {
+			// REMPLACE LE NOEUD PAR LA RACINE DE SON NOEUD DROIT
+			//Le return contenu dans NOEUD.GAUCHE permet de remonter les changements dans l'arbre, comme si chaque personne disait à son parent :
+			//"Voici ma nouvelle branche familiale après avoir fait les modifications."
+			//Si l'enfant supprime quelqu'un et dit : "Voici mon nouveau sous-arbre", alors le parent met à jour son lien avec ce sous-arbre.
+			return noeud.droit;
+		}
+		// Continue la recherche récursive à gauche
+		//Capture le résultat de la suppression
+		//
+		//Met à jour le lien parent-enfant
+		//
+		//Garantit que tous les ancêtres voient le changement
+		noeud.gauche = supprimeMin(noeud.gauche);
+		return noeud;
+	}
+	//La récursion agit comme une vague qui :
+	//
+	//Descend jusqu'au minimum 🌊
+	//
+	//Remonte en réparant les liens un par un
+			// La methode supprimeMin() est plus simple que la methode supprime()
+			// Le noeud qui contient le plus petit entier n'a pas de fils gauche
+			// Reflechissez !
+
+
 	/**
 	 * renvoie la hauteur de l'arbre
 	 * @return la hauteur de l'arbre ou -1 si l'arbre est vide
@@ -113,9 +142,28 @@ public class ABRDEntiers {
 	public int hauteur() {
 		//TODO
 		// Ex C
-		return 0;
+		if (estVide())
+			return -1;
+		return hauteur(racine);
+
 	}
 
+	private int hauteur(NoeudEntier noeud){
+		//if (noeud.droit!=null)
+		//	return 1+hauteur(noeud.droit)+hauteur(noeud.gauche);
+		//if (noeud.gauche!=null)
+		//	return 1+hauteur(noeud.droit)+hauteur(noeud.gauche);
+		//return
+		if (noeud == null)
+			return -1;
+		int hauteurGauche = hauteur(noeud.gauche);
+		int hauteurDroit = hauteur(noeud.droit);
+		if (hauteurGauche > hauteurDroit) {
+			return 1 + hauteurGauche;
+		} else {
+			return 1 + hauteurDroit;
+		}
+	}
 
 	/**
 	 * supprime une fois l'entier de l'ABR
