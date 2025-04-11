@@ -108,7 +108,7 @@ public class ABRDEntiers {
 	}
 
 	private NoeudEntier supprimeMin(NoeudEntier noeud) {
-
+//CAS DE BASE
 		if (noeud.gauche == null) {
 			// REMPLACE LE NOEUD PAR LA RACINE DE SON NOEUD DROIT
 			//Le return contenu dans NOEUD.GAUCHE permet de remonter les changements dans l'arbre, comme si chaque personne disait à son parent :
@@ -116,6 +116,7 @@ public class ABRDEntiers {
 			//Si l'enfant supprime quelqu'un et dit : "Voici mon nouveau sous-arbre", alors le parent met à jour son lien avec ce sous-arbre.
 			return noeud.droit;
 		}
+		//APPEL RECURSIF
 		// Continue la recherche récursive à gauche
 		//Capture le résultat de la suppression
 		//
@@ -172,8 +173,14 @@ public class ABRDEntiers {
 	public boolean supprime(int entier) {
 		//TODO
 		// DEFI!!!!!!!!!!!!!!
-		return false;
+		return supprime(racine, entier)
+	}
 
+	private boolean supprime(NoeudEntier noeud, int entier){
+		if (noeud == null)
+			return false;
+		if (racine.entier == entier)
+			racine.entier = entier;
 	}
 
 	/**
