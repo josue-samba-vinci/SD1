@@ -34,17 +34,17 @@ public class ArbreDEntiers implements Iterable<Integer>{
 	}
 	
 	public Iterator<Integer> postIterateur () {
-		return null;
-		//Cet iterateur s’implemente de facon similaire a l’iterateur en pre-ordre.
+		//Cet iterateur sï¿½implemente de facon similaire a lï¿½iterateur en pre-ordre.
 		//TODO
+		return new PostOrdre();
 	}
 
 	// iterateur in ordre
 	// Cet iterateur a ete selectionne comme iterateur par defaut
 	public Iterator<Integer> iterator () {
-		return null;
-		//Cet iterateur s’implemente de facon similaire a l’iterateur en pre-ordre.
+		//Cet iterateur sï¿½implemente de facon similaire a lï¿½iterateur en pre-ordre.
 		//TODO
+		return new InOrdre();
 	}
 	
 	public Iterator<Integer> iterateurParNiveau () {
@@ -52,6 +52,8 @@ public class ArbreDEntiers implements Iterable<Integer>{
 		//Cet iterateur s'implemente en utilisant une file de Noeud
 		//Lisez bien l'enonce
 		//TODO
+		return new ParNiveau();
+
 	}
 	
 	
@@ -80,29 +82,143 @@ public class ArbreDEntiers implements Iterable<Integer>{
 		public PreIterateur () {
 			fileDEntiers = new ArrayDeque<Integer>(taille);
 			remplirFile(racine);
-			//La classe PreIterator possede un attribut : une file d’entiers (ArrayDeque<Integer>).
-			//Le constructeur de la classe va s’occuper de remplir cette file avec tous les entiers contenus dans l’arbre.
+			//La classe PreIterator possede un attribut : une file dï¿½entiers (ArrayDeque<Integer>).
+			//Le constructeur de la classe va sï¿½occuper de remplir cette file avec tous les entiers contenus dans lï¿½arbre.
 			//Il construit la file et appelle la methode recursive remplirFile()
 		}
 		
 		private void remplirFile (NoeudEntier n) {
 			// TODO
-			//C’est la methode remplirFile() qui se charge de remplir la file.
-			//Il s’agit d’une methode recursive !
-			//Le but de cet iterateur est de parcourir l’arbre en pre-ordre !
-			//Il faut donc « enfiler » les objets dans la file de facon a respecter ce parcours.
+			//Cï¿½est la methode remplirFile() qui se charge de remplir la file.
+			//Il sï¿½agit dï¿½une methode recursive !
+			//Le but de cet iterateur est de parcourir lï¿½arbre en pre-ordre !
+			//Il faut donc ï¿½ enfiler ï¿½ les objets dans la file de facon a respecter ce parcours.
+			if (n==null)
+				return;
+			fileDEntiers.add(n.entier);
+			remplirFile(n.gauche);
+			remplirFile(n.droit);
 		}
 
 		public boolean hasNext () {
-			return false;
 			// TODO
 			//cette methode verifie si la file est non vide.
+			return (!fileDEntiers.isEmpty());
 		}
 
 		public Integer next () {
-			return 0;
 			// TODO
 			//cette methode "defile"
+			return fileDEntiers.removeFirst();
+		}
+	}
+
+	private class InOrdre implements Iterator<Integer> {
+
+		private ArrayDeque<Integer> fileDEntiers;
+
+		public InOrdre () {
+			fileDEntiers = new ArrayDeque<Integer>(taille);
+			remplirFile(racine);
+		}
+
+		private void remplirFile (NoeudEntier n) {
+			// TODO
+			//Cï¿½est la methode remplirFile() qui se charge de remplir la file.
+			//Il sï¿½agit dï¿½une methode recursive !
+			//Le but de cet iterateur est de parcourir lï¿½arbre en in-ordre !
+			//Il faut donc ï¿½ enfiler ï¿½ les objets dans la file de facon a respecter ce parcours.
+			if (n==null)
+				return;
+			remplirFile(n.gauche);
+			fileDEntiers.add(n.entier);
+			remplirFile(n.droit);
+		}
+
+		public boolean hasNext () {
+			// TODO
+			//cette methode verifie si la file est non vide.
+			return (!fileDEntiers.isEmpty());
+		}
+
+		public Integer next () {
+			// TODO
+			//cette methode "defile"
+			return fileDEntiers.removeFirst();
+		}
+	}
+
+	private class PostOrdre implements Iterator<Integer> {
+
+		private ArrayDeque<Integer> fileDEntiers;
+
+		public PostOrdre () {
+			fileDEntiers = new ArrayDeque<Integer>(taille);
+			remplirFile(racine);
+		}
+
+		private void remplirFile (NoeudEntier n) {
+			// TODO
+			//Cï¿½est la methode remplirFile() qui se charge de remplir la file.
+			//Il sï¿½agit dï¿½une methode recursive !
+			//Le but de cet iterateur est de parcourir lï¿½arbre en in-ordre !
+			//Il faut donc ï¿½ enfiler ï¿½ les objets dans la file de facon a respecter ce parcours.
+			if (n==null)
+				return;
+			remplirFile(n.gauche);
+			remplirFile(n.droit);
+			fileDEntiers.add(n.entier);
+		}
+
+		public boolean hasNext () {
+			// TODO
+			//cette methode verifie si la file est non vide.
+			return (!fileDEntiers.isEmpty());
+		}
+
+		public Integer next () {
+			// TODO
+			//cette methode "defile"
+			return fileDEntiers.removeFirst();
+		}
+	}
+
+	private class ParNiveau implements Iterator<Integer> {
+
+		private ArrayDeque<NoeudEntier> fileDeNoeud;
+
+		public ParNiveau () {
+			fileDeNoeud = new ArrayDeque<NoeudEntier>();
+			if (!estVide())
+				fileDeNoeud.addLast(racine);
+		}
+
+		private void remplirFile (NoeudEntier n) {
+			// TODO
+			//Cï¿½est la methode remplirFile() qui se charge de remplir la file.
+			//Il sï¿½agit dï¿½une methode recursive !
+			//Le but de cet iterateur est de parcourir lï¿½arbre en in-ordre !
+			//Il faut donc ï¿½ enfiler ï¿½ les objets dans la file de facon a respecter ce parcours.
+				return;
+
+		}
+
+		public boolean hasNext () {
+			// TODO
+			//cette methode verifie si la file est non vide.
+			return (!fileDeNoeud.isEmpty());
+		}
+
+		public Integer next () {
+			// TODO
+			// Â« dÃ©file Â» un nÅ“ud et Â«enfile Â» les racines de ses fils non vides.
+			 NoeudEntier currentElement = fileDeNoeud.removeFirst();
+			 if (currentElement.gauche!=null)
+				 fileDeNoeud.addLast(currentElement.gauche);
+			 if (currentElement.droit!=null)
+				 fileDeNoeud.addLast(currentElement.droit);
+			 return currentElement.entier;
+
 		}
 	}
 
